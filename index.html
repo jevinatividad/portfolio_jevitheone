@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jevi Natividad | Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080b16;
+    color: #ffffff;
+}
+
+/* HEADER */
+header {
+    background: #101526;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 15px #000;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #00c8ff;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #00c8ff;
+}
+
+/* HERO */
+.hero {
+    min-height: 90vh;
+    padding: 80px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    background: linear-gradient(120deg, #080b16, #111c35);
+}
+
+.hero-text {
+    max-width: 600px;
+    animation: slideLeft 1.2s ease;
+}
+
+.hero h3 {
+    color: #00c8ff;
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    margin: 20px 0;
+}
+
+.hero h1 span {
+    color: #00c8ff;
+}
+
+.hero p {
+    color: #b7c2d9;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+/* PROFILE PICTURE ANIMATION */
+.profile-container {
+    position: relative;
+    animation: float 4s ease-in-out infinite;
+}
+
+.profile {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 25px;
+    border: 4px solid #00c8ff;
+    box-shadow: 0 0 20px #00c8ff,
+                0 0 50px rgba(0, 200, 255, .4);
+    transition: .5s;
+}
+
+.profile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #00c8ff,
+                0 0 70px rgba(0, 200, 255, .6);
+}
+
+.btn {
+    display: inline-block;
+    background: #00a9db;
+    color: #080b16;
+    padding: 13px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 22px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: white;
+    transform: translateY(-5px);
+}
+
+/* SECTIONS */
+section {
+    padding: 75px 8%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 35px;
+    color: #00c8ff;
+}
+
+/* ABOUT */
+.about-box {
+    background: #111a2d;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px #000;
+    line-height: 1.8;
+    border: 1px solid #1e3455;
+}
+
+.about-box p {
+    color: #b7c2d9;
+}
+
+/* SKILLS AND PROJECTS */
+.skills-container,
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.skill,
+.project,
+.education-box {
+    background: #111a2d;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px #000;
+    border: 1px solid #1e3455;
+    transition: .4s;
+}
+
+.skill:hover,
+.project:hover,
+.education-box:hover {
+    transform: translateY(-10px);
+    border-color: #00c8ff;
+    box-shadow: 0 0 20px rgba(0, 200, 255, .2);
+}
+
+.skill h3,
+.project h3 {
+    color: #00c8ff;
+    margin-bottom: 10px;
+}
+
+.skill p,
+.project p,
+.education-box p {
+    color: #b7c2d9;
+    line-height: 1.6;
+}
+
+.education-box {
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+/* CONTACT */
+.contact-box {
+    max-width: 600px;
+    margin: auto;
+    background: #111a2d;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px #000;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    background: #080b16;
+    color: white;
+    border: 1px solid #30415d;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+textarea {
+    height: 130px;
+    resize: vertical;
+}
+
+button {
+    background: #00a9db;
+    color: #080b16;
+    padding: 13px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+button:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+/* FOOTER */
+footer {
+    background: #101526;
+    color: white;
+    text-align: center;
+    padding: 22px;
+}
+
+/* SCROLL ANIMATION */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all .9s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FLOATING ANIMATION */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* HERO ANIMATION */
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        margin: 0;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .skills-container,
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+
+    .profile {
+        width: 240px;
+        height: 280px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">Jevi Natividad.</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+<section class="hero" id="home">
+
+    <div class="hero-text">
+        <h3>WELCOME TO MY PORTFOLIO</h3>
+
+        <h1>Hello, I'm <span>Jevi Natividad</span></h1>
+
+        <p>
+            I am an Information Technology student interested in
+            programming, web development, and database management.
+            I enjoy learning new technologies and creating useful
+            computer systems.
+        </p>
+
+        <a href="#projects" class="btn">View My Projects</a>
+    </div>
+
+    <div class="profile-container">
+        <img src="b9357ed0-9207-4755-a608-1a86d13a6c06.jpg"
+             alt="Jevi Natividad Profile Picture"
+             class="profile">
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about-box">
+        <h3>Hello! I'm Jevi Natividad.</h3>
+
+        <p>
+            I am an IT student who is passionate about technology
+            and computer programming. I am learning how to develop
+            websites, manage databases, and create applications.
+            My goal is to improve my programming skills and become
+            a professional IT developer in the future.
+        </p>
+
+        <br>
+
+        <p><b>Name:</b> Jevi Natividad</p>
+        <p><b>Course:</b> Information Technology</p>
+        <p><b>Interest:</b> Web Development and Programming</p>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
+    <h2 class="section-title">My Skills</h2>
+
+    <div class="skills-container">
+
+        <div class="skill">
+            <h3>HTML</h3>
+            <p>Creating the structure of websites.</p>
+        </div>
+
+        <div class="skill">
+            <h3>CSS</h3>
+            <p>Designing websites with colors and layouts.</p>
+        </div>
+
+        <div class="skill">
+            <h3>JavaScript</h3>
+            <p>Adding interactive website features.</p>
+        </div>
+
+        <div class="skill">
+            <h3>PHP</h3>
+            <p>Developing server-side web applications.</p>
+        </div>
+
+        <div class="skill">
+            <h3>MySQL</h3>
+            <p>Managing and storing database information.</p>
+        </div>
+
+        <div class="skill">
+            <h3>Java</h3>
+            <p>Developing applications using Java programming.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="reveal">
+    <h2 class="section-title">Education</h2>
+
+    <div class="education-box">
+        <h3>Information Technology Student</h3>
+        <p><b>School:</b> ACLC</p>
+        <p><b>Year Level:</b> 2nd Year</p>
+
+        <p>
+            Studying programming, networking, database management,
+            and system development.
+        </p>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="reveal">
+    <h2 class="section-title">My Projects</h2>
+
+    <div class="projects-container">
+
+        <div class="project">
+            <h3>Employee Scheduling System</h3>
+            <p>
+                A system for managing employee schedules
+                and leave requests.
+            </p>
+            <p><b>PHP | MySQL</b></p>
+        </div>
+
+        <div class="project">
+            <h3>T-Shirt Inventory System</h3>
+            <p>
+                An inventory system for managing T-shirt
+                sizes, colors, and stocks.
+            </p>
+            <p><b>Java | MySQL</b></p>
+        </div>
+
+        <div class="project">
+            <h3>Apparel Database</h3>
+            <p>
+                A database project for organizing apparel
+                product information.
+            </p>
+            <p><b>MySQL | SQL</b></p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+    <h2 class="section-title">Contact Me</h2>
+
+    <div class="contact-box">
+
+        <form id="contactForm">
+
+            <input type="text" id="name"
+                   placeholder= "jevi natividad">
+
+            <input type="email" id="email"
+                   placeholder= "jevi@gmail.com">
+
+            <textarea id="message"
+                      placeholder="Your Message" required></textarea>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© <span id="year"></span> Jevi Natividad | My Portfolio</p>
+</footer>
+
+<script>
+
+// CURRENT YEAR
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+// SCROLL REVEAL ANIMATION
+const revealElements = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+    revealElements.forEach(element => {
+        const position = element.getBoundingClientRect().top;
+
+        if (position < window.innerHeight - 100) {
+            element.classList.add("active");
+        }
+    });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+// CONTACT FORM
+document.getElementById("contactForm").addEventListener("submit",
+function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    const receiver = "YOUR_EMAIL@example.com";
+
+    if (receiver === "YOUR_EMAIL@example.com") {
+        alert("Please add your email address in JavaScript first.");
+        return;
+    }
+
+    const subject = encodeURIComponent(
+        "Portfolio message from " + name
+    );
+
+    const body = encodeURIComponent(
+        "Name: " + name +
+        "\nEmail: " + email +
+        "\n\n" + message
+    );
+
+    window.location.href =
+        "mailto:" + receiver +
+        "?subject=" + subject +
+        "&body=" + body;
+
+});
+
+</script>
+
+</body>
+</html>
